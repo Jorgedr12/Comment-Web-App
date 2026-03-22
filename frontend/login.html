@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Wall | Acceso</title>
+    <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="css/output.css">
+</head>
+
+<body class="bg-[#161618] text-gray-300 min-h-screen flex flex-col">
+
+    <main class="flex grow items-center justify-center p-4">
+
+        <article class="w-full max-w-md bg-[#1c1c1c] border border-white/10 p-8 rounded-lg shadow-2xl">
+
+            <section class="text-center mb-8">
+                <img src="assets/logo.jpg"
+                    class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-yellow-200/20 object-cover"
+                    alt="Logo de Comment Wall">
+                <h1 class="text-2xl font-bold text-yellow-200 tracking-tight">Comment Wall</h1>
+                <p class="text-gray-500 text-sm mt-1">Entra o crea tu cuenta al instante</p>
+            </section>
+
+            <section id="error-container" aria-live="assertive">
+                <div id="error-message"
+                    class="hidden bg-red-400/10 border border-red-400/20 text-red-400 text-xs py-3 px-4 rounded-md mb-6 text-center">
+                </div>
+            </section>
+
+            <section>
+                <form onsubmit="handleLogin(event)" class="space-y-5">
+                    <div>
+                        <label for="username"
+                            class="block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2 ml-1">
+                            Usuario
+                        </label>
+                        <input type="text" id="username" name="username" required placeholder="Tu nombre de usuario"
+                            class="w-full bg-[#252525] border border-white/5 p-3 rounded-md focus:outline-none focus:border-yellow-200/50 text-white placeholder:text-gray-600 transition-all">
+                    </div>
+
+                    <div>
+                        <label for="password"
+                            class="block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2 ml-1">
+                            Contraseña
+                        </label>
+                        <input type="password" id="password" name="password" required placeholder="Ingresa tu contraseña"
+                            class="w-full bg-[#252525] border border-white/5 p-3 rounded-md focus:outline-none focus:border-yellow-200/50 text-white placeholder:text-gray-600 transition-all">
+                    </div>
+
+                    <button type="submit" id="btn-login"
+                        class="w-full bg-yellow-200 text-black font-black py-4 rounded-md hover:bg-yellow-300 transition-all uppercase tracking-widest text-xs mt-4 shadow-lg active:scale-95">
+                        Entrar / Registrarse
+                    </button>
+                </form>
+            </section>
+        </article>
+    </main>
+
+    <footer class="bg-[#1c1c1c] border-t border-white/10 w-full">
+        <div class="max-w-6xl mx-auto px-6 py-8 text-center text-gray-500 text-sm">
+            <p>Desarrollado por <span class="text-yellow-200/50 font-semibold">Jorge Luis Duarte Ruiz</span></p>
+        </div>
+    </footer>
+
+    <script src="js/functions.js"></script>
+</body>
+
+</html>

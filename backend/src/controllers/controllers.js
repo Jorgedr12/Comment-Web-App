@@ -100,7 +100,7 @@ export async function createUser(req, res) {
             return res.status(400).json({ error: "La contraseña es obligatoria" });
         }
 
-        const existingUserSnapshot = await usersCollection.where('username', '==', username).get();
+        const existingUserSnapshot = await usersCollection.where('username', '>=', username.toLowerCase()).where('username', '<=', username.toLowerCase() + '\uf8ff').get();
         if (!existingUserSnapshot.empty) {
             return res.status(400).json({ error: "El nombre de usuario ya está registrado" });
         }
