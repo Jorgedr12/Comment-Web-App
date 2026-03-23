@@ -14,13 +14,13 @@ export async function getComments(req, res) {
             const data = doc.data();
             return {
                 id: doc.id,
-                userId: data.userId,
                 username: data.username,
                 message: data.message,
                 date: data.date
             };
         });
-        res.json(comments);
+        const sortedComments = comments.sort((a, b) => new Date(b.date) - new Date(a.date));
+        res.json(sortedComments);
     } catch (error) {
         res.status(500).send("Error al obtener comentarios");
     }
@@ -29,15 +29,13 @@ export async function getComments(req, res) {
 // Post /comments
 export async function createComment(req, res) {
     try {
-        const { userId, username, message } = req.body;
+        const { username, message } = req.body;
         if (!username) {
             return res.status(400).json({ error: "El nombre de usuario es obligatorio" });
         } else if (!message) {
             return res.status(400).json({ error: "El mensaje es obligatorio" });
         } else if (message.length < 5) {
             return res.status(400).json({ error: "El mensaje debe tener al menos 5 caracteres" });
-        } else if (!userId) {
-            return res.status(400).json({ error: "El ID de usuario es obligatorio" });
         }
 
         const snapshot = await commentsCollection.get();
@@ -50,7 +48,6 @@ export async function createComment(req, res) {
         }
 
         const newComment = { 
-            userId,
             username, 
             message, 
             date:  new Date().toISOString() };
@@ -67,12 +64,21 @@ export async function createComment(req, res) {
 export async function deleteComment(req, res) {
     try {
         const id = req.params.id;
+
+        const doc = await commentsCollection.doc(id).get();
+        if (!doc.exists) {
+            return res.status(404).json({ error: "Comentario no encontrado" });
+        }
+
         await commentsCollection.doc(id).delete();
         res.status(204).send();
     } catch (error) {
         res.status(500).send("Error al eliminar comentario");
     }
 }
+
+
+/* 
 
 // GET /users
 export const getUsers = async (req, res) => {
@@ -172,3 +178,5 @@ export async function login(req, res) {
         res.status(500).json({ error: 'Error en el login' });
     }
 };
+
+*/

@@ -5,11 +5,11 @@ import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/comments', verifyToken, getComments);
-router.post('/comments', verifyToken, createComment);
-router.delete('/comments/:id', verifyToken, deleteComment);
-router.get('/users', verifyToken, getUsers);
-router.delete('/users/:id', verifyToken, removeUser);
+router.get('/comments', getComments);
+router.post('/comments', createComment);
+router.delete('/comments/:id', deleteComment);
+router.get('/users', getUsers);
+router.delete('/users/:id', removeUser);
 router.post('/users', createUser);
 router.post('/login', login);
 
