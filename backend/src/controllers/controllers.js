@@ -4,7 +4,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const commentsCollection = db.collection('comments');
-const usersCollection = db.collection('users');
 
 // Get /comments
 export async function getComments(req, res) {
