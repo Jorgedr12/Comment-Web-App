@@ -1,5 +1,4 @@
-const API_URL = 'http://localhost:3000/comments';
-
+const API_URL = 'https://comment-web-app.onrender.com/comments';
 const requestConfig = {
     headers: {
         'Content-Type': 'application/json'
